@@ -32,8 +32,10 @@ var WorkTodo = function(title, floor) {
   // Todo.apply(this, [title, 100]);
 };
 
+// Inherit from the Todo prototype
 WorkTodo.prototype = Object.create(Todo.prototype);
 
+// Overwrite `isDone` for WorkTodo instances
 WorkTodo.prototype.isDone = function() {
   if (this.done) {
     return 'Yup';
