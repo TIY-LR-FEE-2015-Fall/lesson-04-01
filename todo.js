@@ -8,7 +8,7 @@ var Todo = function(title, importance) {
   this.dateComplete = null;
 };
 
-Todo.prototype.thisExists = 'Hello World';
+Todo.prototype.exists = 'Hello World';
 
 Todo.prototype.markComplete = function() {
   this.done = true;
@@ -23,18 +23,27 @@ Todo.prototype.isDone = function() {
   return 'Nope';
 };
 
+var WorkTodo = function(title) {
+  // Run the Todo constructor with the current context `this`
+  Todo.call(this, title, 100);
+
+  // Same just using `apply`
+  // Todo.apply(this, [title, 100]);
+};
 
 // Create instances of Todo
 var x = new Todo('Cereal');
 var y = new Todo('Milk', 10);
 var z = new Todo('Toothpaste', 6);
+var a = new WorkTodo('Get Stapler');
+console.log(a.title);
 
 console.log(y.title);
 
 // Overrides for ONLY `y`
-y.thisExists = 'Local';
-console.log(y.thisExists);
-console.log(z.thisExists);
+y.exists = 'Local';
+console.log(y.exists);
+console.log(z.exists);
 
 // Is markComplete share across all Todo instances
 console.log(z.markComplete === y.markComplete);
